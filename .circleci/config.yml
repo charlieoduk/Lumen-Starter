@@ -1,0 +1,69 @@
+# PHP CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-php/ for more details
+#
+version: 2
+jobs:
+  test:
+    working_directory: ~/starter
+    docker:
+      - image: circleci/php:7.1-browsers
+        environment:
+          APP_ENV: testing
+          APP_KEY: thisisarandomkey
+          DB_CONNECTION: pgsql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 5432
+          DB_DATABASE: starter_test
+          DB_USERNAME: ubuntu
+          QUEUE_DRIVER: sync
+          CC_TEST_REPORTER_ID: 5e7d151be01286d6ee2921950cd3f34aef542392bc910045b58ec1b4fa34b216
+      - image: circleci/postgres:9.6
+        environment:
+          POSTGRES_USER: ubuntu
+          POSTGRES_DB: starter_test
+          POSTGRES_PASSWORD: ""
+      - image: redis
+
+    steps:
+      - run:
+          name: Install PHP extensions
+          command: |
+              sudo apt-get install -y libpq-dev
+              sudo docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql
+              sudo docker-php-ext-install pdo pdo_pgsql pgsql
+      - run:
+          name: Install Composer
+          command: curl -sS https://getcomposer.org/installer | sudo php  -- --install-dir=/usr/local/bin --filename=composer
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - composer-cache-{{ checksum "composer.json" }}
+          - composer-cache-
+      - run:
+          name: Composer Install Dependencies
+          command: composer install --prefer-dist --no-interaction
+
+      - save_cache:
+          key: composer-cache-{{ checksum "composer.json" }}
+          paths:
+            - ./vendor
+      - run:
+            name: Setup Code Climate test-reporter
+            command: |
+              curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+              chmod +x ./cc-test-reporter
+      - run:
+            name: Composer Test
+            command: |
+              ./cc-test-reporter before-build
+              composer test
+      - run:
+          name: Test Coverage Reporter
+          command: ./cc-test-reporter after-build --coverage-input-type clover --exit-code $?
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - test
