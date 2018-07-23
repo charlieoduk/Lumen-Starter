@@ -46,13 +46,13 @@ class UserController extends Controller
         } catch (ValidationException $e) {
         }
 
-        $user = new User();
+       $user = new User();
 
-        $user->email = $request->get('email');
-        $user->name = $request->get('name');
-        $user->password = Hash::make($request->get('password'));
+       $user->email = $request->get('email');
+       $user->name = $request->get('name');
+       $user->password = Hash::make($request->get('password'));
 
-        $user->save();
+       $user->save();
 
         return $this->success("The user with id {$user->id} has been created", 201);
     }

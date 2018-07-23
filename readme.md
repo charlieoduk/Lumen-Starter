@@ -1,14 +1,16 @@
-# Lumen PHP Framework
-
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/lumen-framework/v/unstable.svg)](https://packagist.org/packages/laravel/lumen-framework)
+# Lumen Starter
+[![CircleCI](https://circleci.com/gh/charlieoduk/lumen-starter.svg?style=svg)](https://circleci.com/gh/charlieoduk/lumen-starter)
 [![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
+[![Maintainability](https://api.codeclimate.com/v1/badges/480725cb680408d27786/maintainability)](https://codeclimate.com/github/charlieoduk/lumen-starter/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/480725cb680408d27786/test_coverage)](https://codeclimate.com/github/charlieoduk/lumen-starter/test_coverage)
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+Lumen Starter is a preconfigured template intended to get you up and running with new projects in no time 
 
-## Official Documentation
+## What's Included
+- Lumen v5.6
+- Circle CI Integration
+- Code Climate 
+- 
 
 Documentation for the framework can be found on the [Lumen website](http://lumen.laravel.com/docs).
 

@@ -3,37 +3,63 @@ HOST: http://polls.apiblueprint.org/
 
 # lumen-starter
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+Lumen starter is a scaffold for an API. It contains the basic endponts and tests
 
-## Questions Collection [/questions]
+## Users [api/v1/users]
 
-### List All Questions [GET]
+### List All Users [GET]
 
 + Response 200 (application/json)
 
         [
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
+                "data": [
                     {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
+                        "id": 1,
+                        "name": "Charles Oduk",
+                        "email": "oduk@andela.com",
+                        "created_at": "2018-07-22 04:12:59",
+                        "updated_at": "2018-07-22 04:12:59"
+                    },
+                    {
+                        "id": 2,
+                        "name": "Dominic Bett",
+                        "email": "bett@andela.com",
+                        "created_at": "2018-07-22 04:16:11",
+                        "updated_at": "2018-07-22 04:16:11"
+                    },
+                    {
+                        "id": 3,
+                        "name": "Madge Kinyanjui",
+                        "email": "kinyanjui@andela.com",
+                        "created_at": "2018-07-22 04:16:21",
+                        "updated_at": "2018-07-22 04:16:21"
+                    }
+                ]
+            }
+        ]
+        
+## Users [api/v1/users/1]
+
+### List A User [GET]
+
++ Response 200 (application/json)
+
+        [
+            {
+                "data": [
+                    {
+                        "id": 1,
+                        "name": "Charles Oduk",
+                        "email": "oduk@andela.com",
+                        "created_at": "2018-07-22 04:12:59",
+                        "updated_at": "2018-07-22 04:12:59"
                     }
                 ]
             }
         ]
 
-### Create a New Question [POST]
+### Create a New User [POST]
 
 You may create your own question using this action. It takes a JSON
 object containing a question and a collection of answers in the
